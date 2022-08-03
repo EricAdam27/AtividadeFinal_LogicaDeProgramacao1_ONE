@@ -1,0 +1,86 @@
+<meta charset = "UTF-8">
+
+<h1>Duvido você acertar!!!</h1>
+
+<h3>Foi gerado um número de 1 a 10</h3>
+<big>Qual número você acha que foi gerado? Digite abaixo</big>
+<br><br>
+
+<input/>
+<button>Verificar</button>
+
+<script>
+
+	function sorteiaNumero() {
+
+		return Math.round(Math.random() * 10);
+	}
+
+	function sorteiaNumeros(quantidade) {
+
+		var listaNumerosGerados = [];
+
+		var numero = 1;
+
+		while (numero <= quantidade) {
+
+			var numeroAleatorio = sorteiaNumero();
+
+			if (numeroAleatorio != 0) {
+
+				var achou = false;
+
+				for (var i = 0; i < listaNumerosGerados.length; i++) {
+				
+					if (listaNumerosGerados[i] == numeroAleatorio) {
+						
+						achou = true;
+						break;
+					}
+				}
+
+				if (achou == false) {
+
+					listaNumerosGerados.push(numeroAleatorio);
+					numero++;
+				}
+			}
+		}
+
+		return listaNumerosGerados;
+	}
+
+	var numerosGerados = sorteiaNumeros(1);
+
+	console.log(numerosGerados);
+
+	var input = document.querySelector("input");
+	input.focus();
+
+	function verifica() {
+
+		var achou = false;
+		for (var i = 0; i < numerosGerados.length; i++) {
+			
+			if (input.value == numerosGerados[i]) {
+
+				alert("ACERTOOOU!!! :)");
+				achou = true;
+				break;
+			}
+		}
+
+		if (achou == false) {
+
+			alert("ERROOOU!!! :(");
+		}
+
+		input.value = "";
+		input.focus();
+	}
+
+	var button = document.querySelector("button");
+
+	button.onclick = verifica;
+
+</script>
